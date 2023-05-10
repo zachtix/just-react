@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import LoginArea from './LoginArea'
 
-const fakeUser = { username: 'nine789', fullname: 'เต้า หมิงซื่อ'}
 
 const AuthContext = React.createContext()
 
 function App() {
-
+  const [ auth, setAuth ] = useState(null)
+  console.log('App refresh');
   return (
-    <AuthContext.Provider value={fakeUser}>
+    <AuthContext.Provider value={{ auth, setAuth }}>
       <section className='app-section'>
         <div className='app-container' />
         <LoginArea />
