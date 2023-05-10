@@ -1,24 +1,21 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import Popup from './Popup';
+import React, { useEffect, useState } from 'react'
+import LoginArea from './LoginArea'
+
+const fakeUser = { username: 'nine789', fullname: 'เต้า หมิงซื่อ'}
+
+const AuthContext = React.createContext()
 
 function App() {
-  const[ isPopupOpen, setisPopupOpen ] = useState(false)
-
-  let popup = null;
-  if (isPopupOpen) {
-    popup = <Popup onPopupClose={() => setisPopupOpen(false)}/>
-  }
 
   return (
-      <div className='app-section'>
-          <div className='app-container'>
-            <h1>เก็บโค้ดส่วนลด</h1>
-            <button onClick={() => setisPopupOpen(true)}>เปิด</button>
-          </div>
-          {popup}
-      </div>
+    <AuthContext.Provider value={fakeUser}>
+      <section className='app-section'>
+        <div className='app-container' />
+        <LoginArea />
+      </section>
+    </AuthContext.Provider>
   )
 }
 
+export { AuthContext }
 export default App
