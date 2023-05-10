@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useReducer, useRef } from 'react'
+import SelectTextarea from './SelectTextarea'
+import SendFile from './SendFile'
 
 function App() {
   const fileRef = useRef(null)
@@ -18,18 +20,8 @@ function App() {
       <section className='app-section'>
         <div className='app-container'>
           <h2>ไม่ใช่แฟนทำแทนก็ได้</h2>
-          <p>
-            <textarea ref={textareaRef}/>
-          </p>
-          <p>
-            <button onClick={onAllTextClick}>เลือกข้อความทั้งหมด</button>
-          </p>
-          <p>
-            <input type='file' ref={fileRef} />
-          </p>
-          <p>
-            <button onClick={onUploadClick}>อัพไฟล์</button>
-          </p>
+          <SelectTextarea onAllTextClick={onAllTextClick} ref={textareaRef} />
+          <SendFile onUploadClick={onUploadClick} ref={fileRef}/>
         </div>
       </section>
   )
