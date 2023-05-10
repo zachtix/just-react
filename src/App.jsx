@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import Popup from './Popup';
 
 function App() {
-  const[ users, setUsers ] = useState([])
+  const[ isPopupOpen, setisPopupOpen ] = useState(false)
 
-  useEffect(() => {
-    fetch('https://reqres.in/api/users?page=2').then(res => {
-      return res.json()
-    }).then(resJson => {
-      setUsers(resJson.data)
-    })
-  }, [])
-
-  const userElements = users.map(user => {
-    return <h3 key={user.id}>{user.email}</h3>
-  })
+  let popup = null;
+  if (isPopupOpen) {
+    popup = <Popup onPopupClose={() => setisPopupOpen(false)}/>
+  }
 
   return (
       <div className='app-section'>
           <div className='app-container'>
             <h1>เก็บโค้ดส่วนลด</h1>
-             {userElements}
+            <button onClick={() => setisPopupOpen(true)}>เปิด</button>
           </div>
+          {popup}
       </div>
   )
 }
